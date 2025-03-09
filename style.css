@@ -1,0 +1,828 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+body {
+	font-family: "Montserrat", sans-serif;
+}
+.container {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskck {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerlisensisenjata {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerstnk {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskpolice {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskambulance {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerbpjsambulance {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerspambulance {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskmechanic {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskpedagang {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskpemerintah {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.containerskwbpemerintah {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.page {
+	width: 60%;
+	max-width: 600px;
+	margin: 2rem;
+	padding: 1rem;
+	background-color: #ffffff;
+	border-radius: 2px;
+}
+.pagemedis {
+	width: 60%;
+	max-width: 600px;
+	margin: 2rem;
+	padding: 1rem;
+	background-color: #ffffff;
+	border-radius: 2px;
+}
+.pagemekanik {
+	width: 60%;
+	max-width: 600px;
+	margin: 2rem;
+	padding: 1rem;
+	background-color: #ffffff;
+	border-radius: 2px;
+}
+.pagepedagang {
+	width: 60%;
+	max-width: 600px;
+	margin: 2rem;
+	padding: 1rem;
+	background-color: #ffffff;
+	border-radius: 2px;
+}
+.pagepemerintah {
+	width: 60%;
+	max-width: 600px;
+	margin: 2rem;
+	padding: 1rem;
+	background-color: #ffffff;
+	border-radius: 2px;
+}
+.page-title {
+	font-size: 2rem;
+	margin: 0;
+	text-align: center;
+}
+.pagemedis-title {
+	font-size: 2rem;
+	margin: 0;
+	text-align: center;
+}
+.pagemekanik-title {
+	font-size: 2rem;
+	margin: 0;
+	text-align: center;
+}
+.pagepedagang-title {
+	font-size: 2rem;
+	margin: 0;
+	text-align: center;
+}
+.pagepemerintah-title {
+	font-size: 2rem;
+	margin: 0;
+	text-align: center;
+}
+.header {
+	display: flex;
+	align-items: center;
+	height: 2rem;
+	background: #2E7DBC;
+	background: conic-gradient(from 315deg, #2E7DBC, #04116B);
+	color: #ffffff;
+}
+.headermedis {
+	display: flex;
+	align-items: center;
+	height: 2rem;
+	background: #ED616B;
+	background: conic-gradient(from 315deg, #ED616B, #D8161D);
+	color: #ffffff;
+}
+.headermekanik {
+	display: flex;
+	align-items: center;
+	height: 2rem;
+	background: #D78B29;
+	background: conic-gradient(from 315deg, #D78B29, #355363);
+	color: #ffffff;
+}
+.headerpedagang {
+	display: flex;
+	align-items: center;
+	height: 2rem;
+	background: #54DC8A;
+	background: conic-gradient(from 315deg, #54DC8A, #1F2507);
+	color: #ffffff;
+}
+.headerpemerintah {
+	display: flex;
+	align-items: center;
+	height: 2rem;
+	background: #465675;
+	background: conic-gradient(from 315deg, #465675, #656565);
+	color: #ffffff;
+}
+.header p {
+	margin: 0;
+	margin-left: 1rem;
+}
+.headermedis p {
+	margin: 0;
+	margin-left: 1rem;
+}
+.headermekanik p {
+	margin: 0;
+	margin-left: 1rem;
+}
+.headerpedagang p {
+	margin: 0;
+	margin-left: 1rem;
+}
+.headerpemerintah p {
+	margin: 0;
+	margin-left: 1rem;
+}
+.text {
+	margin-top: 1rem;
+	margin-bottom: 5px;
+}
+.inputs {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1rem;
+}
+.color-namapetugas {
+	margin-left: -1rem;
+	width: 107.5%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #2E7DBC;
+	background: conic-gradient(from 315deg, #2E7DBC, #04116B);
+	color: #ffffff;
+}
+.color-namapetugasmedis {
+	margin-left: -1rem;
+	width: 107.5%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #ED616B;
+	background: conic-gradient(from 315deg, #ED616B, #D8161D);
+	color: #ffffff;
+}
+.color-namapetugasmekanik {
+	margin-left: -1rem;
+	width: 107.5%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #D78B29;
+	background: conic-gradient(from 315deg, #D78B29, #355363);
+	color: #ffffff;
+}
+.color-namapetugaspedagang {
+	margin-left: -1rem;
+	width: 107.5%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #54DC8A;
+	background: conic-gradient(from 315deg, #54DC8A, #1F2507);
+	color: #ffffff;
+}
+.color-namapetugaspemerintah {
+	margin-left: -1rem;
+	width: 107.5%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #465675;
+	background: conic-gradient(from 315deg, #465675, #656565);
+	color: #ffffff;
+}
+.color-namapembuat {
+	width: 100%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #2E7DBC;
+	background: conic-gradient(from 315deg, #2E7DBC, #04116B);
+	color: #ffffff;
+}
+.color-namapembuatmedis {
+	width: 100%;
+	padding: 0.5rem;
+	height: 2rem;
+	background: #ED616B;
+	background: conic-gradient(from 315deg, #ED616B, #D8161D);
+	color: #ffffff;
+}
+.color-namapembuatmekanik {
+	width: 100%;
+	padding: 0.5rem;
+	height: 2rem;
+background: #D78B29;
+background: conic-gradient(from 315deg, #D78B29, #355363);
+	color: #ffffff;
+}
+.color-namapembuatpedagang {
+	width: 100%;
+	padding: 0.5rem;
+	height: 2rem;
+background: #54DC8A;
+background: conic-gradient(from 315deg, #54DC8A, #1F2507);
+	color: #ffffff;
+}
+.color-namapembuatpemerintah {
+	width: 100%;
+	padding: 0.5rem;
+	height: 2rem;
+background: #465675;
+background: conic-gradient(from 315deg, #465675, #656565);
+	color: #ffffff;
+}
+.description {
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+.inputsjabatan {
+	width: 100%;
+	padding: 0.5rem;
+	margin-left: 6rem;
+	margin-top: 17rem;
+	display: flex;
+	flex-direction: column;
+}
+.descriptionskck {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionlisensisenjata {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionstnk {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionskambulance {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionbpjsambulance {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionspambulance {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionskmechanic {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionskpedagang {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionskpemerintah {
+	font-weight: bold;
+	width: 100%;
+}
+.descriptionskwbpemerintah {
+	font-weight: bold;
+	width: 100%;
+}
+.input {
+	padding: 0.5rem;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+}
+.inputss {
+	padding: 0.5rem;
+	width: 107.5%;
+	margin-top: 5px;
+	margin-left: -15px;
+}
+.text-container {
+	margin-bottom: 1rem;
+}
+.textskck-container {
+	margin-bottom: 1rem;
+}
+.textarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskckarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textlisensisenjataarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textstnkarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskpolicearea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskambulancearea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textbpjsambulancearea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textspambulancearea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskmechanicarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskpedagangarea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskpemerintaharea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.textskwbpemerintaharea {
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid#e0e0e050;
+	border-radius: 4px;
+	min-height: 10rem;
+	resize: vertical;
+}
+.sign-footer {
+	width: 100%;
+	height: 100%;
+}
+.textarea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskckarea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskpolicearea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textlisensisenjataarea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textstnkarea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskambulancearea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textbpjsambulancearea-information {
+	position: relative;
+	width: 60%;
+
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+
+	min-height: 8vh;
+	max-height: 20vh;
+
+	margin-top: 2%;
+
+	padding: 12px 20px;
+
+	resize: none;
+}
+.textspambulancearea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskmechanicarea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskpedagangarea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskpemerintaharea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.textskwbpemerintaharea-information {
+	position: relative;
+	width: 60%;
+	border: 1px solid #e0e0e050;
+	border-radius: 4px;
+	min-height: 8vh;
+	max-height: 20vh;
+	margin-top: 2%;
+	padding: 12px 20px;
+	resize: none;
+}
+.signature {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskck {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signaturelisensisenjata {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signaturestnk {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskpolice {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskambulance {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signaturebpjsambulance {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signaturespambulance {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskmechanic {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskpedagang {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskpemerintah {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signatureskwbpemerintah {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	height: 6vh;
+	text-align: center;
+	margin-top: -13%;
+	margin-left: 65%;
+	transition: all 0.4s;
+	background-color: #f7f7f7;
+	font-family: "Marck Script", cursive;
+	font-size: 1.5em;
+}
+.signature:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskck:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signaturelisensisenjata:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signaturestnk:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskpolice:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskambulance:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signaturebpjsambulance:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signaturespambulance:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskmechanic:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskpedagang:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskpemerintah:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.signatureskwbpemerintah:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.image {
+	margin-top: 1%;
+	margin-left: -1%;
+	max-width: 40%;
+	height: auto;
+}
