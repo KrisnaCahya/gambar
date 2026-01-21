@@ -347,37 +347,67 @@
             // Test ping 10 kali
             for (let i = 0; i < testCount; i++) {
                 const startTime = performance.now();
+                let pingSuccess = false;
                 
                 try {
-                    // Gunakan fetch dengan timeout yang jelas
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 3000);
-                    
-                    // Coba ping ke server (IP + Port) dulu
-                    await fetch(gate.url + '?' + Date.now(), {
-                        method: 'HEAD',
-                        cache: 'no-cache',
-                        mode: 'no-cors',
-                        signal: controller.signal
-                    }).catch(async () => {
-                        // Jika gagal, fallback ke IP only
-                        await fetch(gate.pingUrl + '?' + Date.now(), {
-                            method: 'HEAD',
-                            cache: 'no-cache',
-                            mode: 'no-cors',
-                            signal: controller.signal
-                        });
-                    }).finally(() => clearTimeout(timeoutId));
-                    
-                    const endTime = performance.now();
-                    const ping = Math.round(endTime - startTime);
-                    
-                    // Terima ping antara 10ms sampai 1000ms
-                    if (ping >= 10 && ping <= 1000) {
-                        pingResults.push(ping);
-                    }
+                    // Method yang reliable: Image loading (tidak terblokir CORS/Mixed Content)
+                    await new Promise((resolve, reject) => {
+                        const img = new Image();
+                        const timeout = setTimeout(() => {
+                            img.src = ''; // Cancel loading
+                            reject('timeout');
+                        }, 3000);
+                        
+                        // Gunakan onload DAN onerror karena keduanya menandakan server response
+                        const cleanup = () => {
+                            clearTimeout(timeout);
+                            const endTime = performance.now();
+                            const ping = Math.round(endTime - startTime);
+                            
+                            // Terima ping antara 10ms sampai 1000ms
+                            if (ping >= 10 && ping <= 1000) {
+                                pingResults.push(ping);
+                                pingSuccess = true;
+                            }
+                            resolve();
+                        };
+                        
+                        img.onload = cleanup;
+                        img.onerror = cleanup; // Error juga berarti server merespons!
+                        
+                        // Try server dengan port dulu, append random query untuk bypass cache
+                        img.src = gate.url + '/favicon.ico?' + Date.now() + '-' + Math.random();
+                    });
                 } catch (error) {
-                    // Jika abort/timeout, skip
+                    // Jika timeout, coba IP saja
+                    if (!pingSuccess) {
+                        try {
+                            await new Promise((resolve, reject) => {
+                                const img = new Image();
+                                const timeout = setTimeout(() => {
+                                    img.src = '';
+                                    resolve();
+                                }, 2000);
+                                
+                                const cleanup = () => {
+                                    clearTimeout(timeout);
+                                    const endTime = performance.now();
+                                    const ping = Math.round(endTime - startTime);
+                                    
+                                    if (ping >= 10 && ping <= 1000) {
+                                        pingResults.push(ping);
+                                    }
+                                    resolve();
+                                };
+                                
+                                img.onload = cleanup;
+                                img.onerror = cleanup;
+                                img.src = gate.pingUrl + '/favicon.ico?' + Date.now() + '-' + Math.random();
+                            });
+                        } catch (e) {
+                            // Skip
+                        }
+                    }
                 }
                 
                 // Update progress dengan median sementara
