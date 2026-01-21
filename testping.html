@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gate Ping Tester - Dunia VRP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .gates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gate-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+
+        .gate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .gate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .gate-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .primary-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .gate-url {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .ping-result {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .ping-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .ping-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .ping-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .ping-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .ping-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ping-stat-label {
+            font-size: 0.8em;
+            color: #999;
+            margin-bottom: 2px;
+        }
+
+        .ping-stat-value {
+            font-weight: 600;
+        }
+
+        .ping-excellent { color: #10b981; }
+        .ping-good { color: #3b82f6; }
+        .ping-fair { color: #f59e0b; }
+        .ping-poor { color: #ef4444; }
+        .ping-testing { color: #6b7280; }
+
+        .command-box {
+            background: #1f2937;
+            color: #10b981;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .command-box:hover {
+            background: #374151;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 Gate Ping Tester</h1>
+            <p class="subtitle">Dunia VRP - Cek Koneksi Terbaik</p>
+        </header>
+
+        <div class="controls">
+            <button class="btn" id="testBtn" onclick="testAllGates()">
+                � Test Ulang Sekarang
+            </button>
+            <p style="color: white; margin-top: 10px; opacity: 0.9;">
+                ⚡ Auto testing aktif - Update otomatis setiap 3 menit
+            </p>
+        </div>
+
+        <div class="gates-grid" id="gatesContainer"></div>
+
+        <div class="footer">
+            <p>💡 Website akan test setiap gate sebanyak 10x dan menggunakan nilai median untuk hasil yang stabil</p>
+            <p>Outliers (nilai ekstrem) akan dibuang otomatis. Pilih gate dengan ping terendah dan jitter minimal</p>
+        </div>
+    </div>
+
+    <script>
+        const GATES = [
+            {
+                url: "http://103.42.116.78:30120",
+                pingUrl: "http://103.42.116.78",
+                name: "PORTAL UTAMA",
+                command: "connect dunia-vrp.krisnacahya.my.id",
+                isPrimary: true
+            },
+            {
+                url: "http://45.139.226.70:30120",
+                pingUrl: "http://45.139.226.70",
+                name: "PORTAL INDIHOME",
+                command: "connect dunia-vrp-indihome.krisnacahya.my.id",
+                isPrimary: true
+            },
+            {
+                url: "http://103.31.205.113:29001",
+                pingUrl: "http://103.31.205.113",
+                name: "PORTAL IDN 1",
+                command: "connect dunia-vrp-id.krisnacahya.my.id",
+                isPrimary: false
+            },
+            {
+                url: "http://194.56.225.95:29001",
+                pingUrl: "http://194.56.225.95",
+                name: "PORTAL SG",
+                command: "connect dunia-vrp-sg.krisnacahya.my.id",
+                isPrimary: false
+            },
+            {
+                url: "http://160.187.141.236:30120",
+                pingUrl: "http://160.187.141.236",
+                name: "PORTAL SG",
+                command: "connect dunia-gate2.krisnacahya.my.id",
+                isPrimary: false
+            }
+        ];
+
+        function initGateCards() {
+            const container = document.getElementById('gatesContainer');
+            container.innerHTML = '';
+
+            GATES.forEach((gate, index) => {
+                const card = document.createElement('div');
+                card.className = 'gate-card';
+                card.innerHTML = `
+                    <div class="gate-header">
+                        <div class="gate-name">${gate.name}</div>
+                        ${gate.isPrimary ? '<span class="primary-badge">PRIMARY</span>' : ''}
+                    </div>
+                    <div class="gate-url">${gate.url}</div>
+                    <div class="ping-result">
+                        <div class="ping-main">
+                            <span class="ping-label">Average Ping:</span>
+                            <span class="ping-value ping-testing" id="ping-${index}">-</span>
+                        </div>
+                        <div class="ping-stats" id="stats-${index}" style="display: none;">
+                            <div class="ping-stat">
+                                <span class="ping-stat-label">Min</span>
+                                <span class="ping-stat-value" id="min-${index}">-</span>
+                            </div>
+                            <div class="ping-stat">
+                                <span class="ping-stat-label">Max</span>
+                                <span class="ping-stat-value" id="max-${index}">-</span>
+                            </div>
+                            <div class="ping-stat">
+                                <span class="ping-stat-label">Jitter</span>
+                                <span class="ping-stat-value" id="jitter-${index}">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="command-box" onclick="copyCommand('${gate.command}')" title="Klik untuk copy">
+                        ${gate.command}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        async function testPing(gate, index) {
+            const pingElement = document.getElementById(`ping-${index}`);
+            const statsContainer = document.getElementById(`stats-${index}`);
+            const minElement = document.getElementById(`min-${index}`);
+            const maxElement = document.getElementById(`max-${index}`);
+            const jitterElement = document.getElementById(`jitter-${index}`);
+            
+            pingElement.innerHTML = '<span class="loading"></span>';
+            pingElement.className = 'ping-value ping-testing';
+            statsContainer.style.display = 'none';
+
+            const pingResults = [];
+            const testCount = 10; // Test 10x untuk akurasi lebih baik
+
+            // Test ping 10 kali
+            for (let i = 0; i < testCount; i++) {
+                const startTime = performance.now();
+                
+                try {
+                    // Gunakan fetch dengan timeout yang jelas
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 3000);
+                    
+                    // Coba ping ke server (IP + Port) dulu
+                    await fetch(gate.url + '?' + Date.now(), {
+                        method: 'HEAD',
+                        cache: 'no-cache',
+                        mode: 'no-cors',
+                        signal: controller.signal
+                    }).catch(async () => {
+                        // Jika gagal, fallback ke IP only
+                        await fetch(gate.pingUrl + '?' + Date.now(), {
+                            method: 'HEAD',
+                            cache: 'no-cache',
+                            mode: 'no-cors',
+                            signal: controller.signal
+                        });
+                    }).finally(() => clearTimeout(timeoutId));
+                    
+                    const endTime = performance.now();
+                    const ping = Math.round(endTime - startTime);
+                    
+                    // Terima ping antara 10ms sampai 1000ms
+                    if (ping >= 10 && ping <= 1000) {
+                        pingResults.push(ping);
+                    }
+                } catch (error) {
+                    // Jika abort/timeout, skip
+                }
+                
+                // Update progress dengan median sementara
+                if (pingResults.length > 0) {
+                    const sorted = [...pingResults].sort((a, b) => a - b);
+                    const median = sorted[Math.floor(sorted.length / 2)];
+                    pingElement.textContent = `${i + 1}/${testCount} (~${median}ms)`;
+                } else {
+                    pingElement.textContent = `${i + 1}/${testCount}`;
+                }
+                
+                // Delay antar test
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+
+            // Hitung statistik dengan filtering outliers
+            if (pingResults.length >= 3) {
+                // Sort untuk median
+                const sorted = [...pingResults].sort((a, b) => a - b);
+                
+                // Buang 2 nilai tertinggi dan 2 terendah (remove outliers)
+                const filtered = sorted.length > 6 
+                    ? sorted.slice(2, -2) 
+                    : sorted;
+                
+                // Gunakan median untuk hasil yang lebih stabil
+                const median = filtered[Math.floor(filtered.length / 2)];
+                const avg = Math.round(filtered.reduce((a, b) => a + b, 0) / filtered.length);
+                const min = Math.min(...filtered);
+                const max = Math.max(...filtered);
+                const jitter = max - min;
+
+                // Tampilkan median sebagai hasil utama (lebih stabil)
+                pingElement.textContent = `${median}ms`;
+                minElement.textContent = `${min}ms`;
+                maxElement.textContent = `${max}ms`;
+                jitterElement.textContent = `${jitter}ms`;
+                statsContainer.style.display = 'flex';
+                
+                // Set warna berdasarkan median ping
+                if (median < 50) {
+                    pingElement.className = 'ping-value ping-excellent';
+                } else if (median < 100) {
+                    pingElement.className = 'ping-value ping-good';
+                } else if (median < 200) {
+                    pingElement.className = 'ping-value ping-fair';
+                } else {
+                    pingElement.className = 'ping-value ping-poor';
+                }
+            } else {
+                pingElement.textContent = 'Failed';
+                pingElement.className = 'ping-value ping-poor';
+            }
+        }
+
+        async function testAllGates() {
+            const btn = document.getElementById('testBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Testing...';
+
+            const promises = GATES.map((gate, index) => testPing(gate, index));
+            await Promise.all(promises);
+            
+            btn.disabled = false;
+            btn.textContent = '🔄 Test Ulang Sekarang';
+            
+            // Update waktu test terakhir
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('id-ID');
+            btn.title = `Terakhir ditest: ${timeStr}`;
+        }
+
+        function copyCommand(command) {
+            navigator.clipboard.writeText(command).then(() => {
+                alert(`Command berhasil dicopy: ${command}`);
+            }).catch(() => {
+                prompt('Copy command ini:', command);
+            });
+        }
+
+        // Auto test on page load
+        let autoTestInterval;
+        
+        function startAutoTest() {
+            // Test pertama langsung
+            testAllGates();
+            
+            // Auto test ulang setiap 3 menit
+            if (autoTestInterval) clearInterval(autoTestInterval);
+            autoTestInterval = setInterval(() => {
+                testAllGates();
+            }, 180000); // 3 menit = 180000ms
+        }
+
+        // Init dan jalankan auto test
+        initGateCards();
+        
+        // Tunggu sebentar agar UI render dulu, lalu auto test
+        setTimeout(() => {
+            startAutoTest();
+        }, 500);
+    </script>
+</body>
+</html>
